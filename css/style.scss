@@ -1,0 +1,1802 @@
+//マップ型変数breakpointsを定義
+$breakpoints: (
+//キー　　値
+ 'sm': 'screen and (max-width: 576px)',
+ 'md': 'screen and (max-width: 768px)',
+ 'lg': 'screen and (max-width: 992px)',
+ 'xl': 'screen and (max-width: 1200px)'
+) !default;
+
+//メディアクエリ用のmixinを定義。デフォ値はmd
+@mixin mq($breakpoint: md) {
+//map-get(マップ型変数, キー)で値を取得
+  @media #{map-get($breakpoints, $breakpoint)} {
+    //この中をカスタムできる
+    @content;
+  }
+}
+
+$color-text: #333333;
+$color-white: #ffffff;
+$pc-main-font-size: 2rem;
+$color-yellow: #ebb94d;
+$color-yellow2: #f7c23c;
+$color-beige: #fef5e0;
+$color-blue: #016ea9;
+$button-red:#da6b64; 
+$font-weight-300: 300;
+$font-weight-600: 600;
+$opacity: 0.7;
+
+html{
+    font-size: 62.5%;
+    text-align: center;
+}
+
+body {
+    font-family: "メイリオ", sans-serif;
+    color: $color-text;
+    letter-spacing: 1.5px;
+    box-sizing: border-box;
+    font-size: $pc-main-font-size;
+    line-height: 1.6;
+}
+
+section{
+    text-align: center;
+}
+
+a{
+    text-decoration: none;
+    color: $color-white;
+}
+
+.introduction, .about, .step, .blue-page, .toLearn, .merit, .member, .qa, .customer-voice, .learnContent, .flow, .benefit, .value, .message, .contact, .toggleQuestion{
+    padding: 40px 0;
+    @include mq(md){
+        padding: 20px 0;
+    }
+} 
+
+//余白を消すために全体に適用
+.wrap{
+    overflow: hidden;
+}
+
+
+//共通
+//スマホ時改行
+.responsive{
+    display: none;
+    @include mq(md){
+        display: block;
+    }
+}
+
+
+// ボタン
+.button-red{
+    color: $color-white;
+    background-color: $button-red;
+    border: none;
+    border-radius: 50px;
+    font-weight: $font-weight-600; 
+    cursor: pointer;
+    letter-spacing: 1.5px;
+    &:hover{
+        background-color: #d84940;
+    }
+    &:focus{
+        outline: none;
+    }
+}
+
+.button-main{
+    padding: 30px 120px;
+    font-size: 2.8rem;
+    width: 72%;
+    @include mq(md){
+        padding: 25px 50px;
+        font-size: 1.8rem;
+        margin:10px 0;
+        width: 80%;
+    }
+    @include mq(sm){
+        padding: 15px 20px;
+        font-size: 2rem;
+        margin: 20px 0 10px;
+        width: 90%;
+    }          
+}
+
+.button-contact{
+    padding: 10px 80px;
+    font-size: 23px;
+    width: 100%;
+    letter-spacing: 20px;
+}
+
+
+// タイトル
+.title{
+    font-size: 2.8rem; 
+    font-weight: $font-weight-600;
+    position: relative;
+    margin: 20px 0 10px;
+    @include mq(md){
+        font-size: 2.4rem;
+    }
+    @include mq(sm){
+        font-size: 1.8rem;
+        line-height: 40px;
+    }
+ }
+ 
+ 
+ // 鍵かっこつきタイトル
+.em-title-wrap{
+    position: relative;
+    padding: 15px 0;
+    @include mq(md){
+        padding: 5px 20px;
+    }
+    &::before, &::after{
+        position: absolute;
+        content: '';
+        width: 50px;
+        height: 50px;
+        @include mq(md){
+            width: 30px;
+            height: 30px;
+        }
+    }
+    &::before{
+        top: 0px;
+        left: 14%;
+        border-top: 4px $color-yellow solid;
+        border-left: 4px $color-yellow solid;
+        @include mq(md){
+            left: 2%;
+        }
+    }
+    &::after{
+        bottom: 0px;
+        right: 14%;
+        border-bottom: 4px $color-yellow solid;
+        border-right: 4px $color-yellow solid;
+        @include mq(md){
+           right: 2%;
+        }
+    }
+}
+
+.em-title-white-wrap{
+    position: relative;
+    padding: 15px 0;
+    @include mq(md){
+        padding: 5px 20px;  
+    }
+    &::before, &::after{
+        position: absolute;
+        content: '';
+        width: 50px;
+        height: 50px;
+        @include mq(md){
+           width: 30px;
+           height: 30px;
+        }
+    }
+    &::before{
+        top: 0px;
+        left: 14%;
+        border-top: 4px $color-white solid;
+        border-left: 4px $color-white solid;
+        @include mq(md){
+           left: 2%;
+        }
+    }
+    &::after{
+        bottom: 0px;
+        right: 14%;
+        border-bottom: 4px $color-white solid;
+        border-right: 4px $color-white solid;
+        @include mq(md){
+           right: 2%;
+        }
+    }
+}
+
+//snsボタン
+.sns-button-items{
+    display: flex;
+    justify-content: center;
+    .sns-button-item{
+        text-decoration: none;
+    }
+    .twitter-button{
+        position: relative;
+    }
+}
+
+//黄色で囲まれた枠
+.yellow-box{
+    background-color: $color-white;
+    border: $color-yellow 2px solid;
+}
+
+// 背景が青のページ
+.blue-page{
+    background-color: $color-blue;
+    color: $color-white;
+    text-align: center;
+
+    .blue-page-p{
+        font-size: $pc-main-font-size;
+        @include mq(md){
+            font-size: 1.2rem;
+        }
+
+        .blue-page-span{
+            color: $color-yellow;
+            font-weight: $font-weight-600;
+        }
+    }
+    .blue-page-p2{
+        @include mq(md){
+            font-size: 1.6rem;               
+        }
+        @include mq(sm){
+            font-size: 1.5rem;       
+        }
+    }
+}
+
+
+
+//header
+.header{
+    position: fixed;
+    max-width: 100%;
+    width: 100%;
+    height: 75px;
+    z-index: 100;
+    background-color: $color-white;
+    @include mq(md){
+        height: 62px;
+    }
+    .header-items{
+        height: 75px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 0;
+        margin: 0 120px;
+        @include mq(md){
+            height: 62px;
+            padding: 0;
+            margin: 0;
+        }
+        .header-left{
+            display: flex;
+            align-items: flex-end;
+            @include mq(md){
+                flex-direction: column-reverse;
+                align-items: flex-start;
+                padding: 10px;
+            }        
+            img{
+               width: 128px; 
+               @include mq(md){
+                width: 90px;
+                }        
+            }
+            .header-p{
+                font-size: 1.4rem;
+                color: $color-text;
+                font-weight: $font-weight-600;
+                @include mq(md){
+                    font-size: 1.2rem;  
+                }
+                @include mq(sm){
+                    font-size: 1rem;
+                }          
+            }
+        }
+        .header-right{
+            .button-header{
+                padding: 11px 40px;
+                width: 317.47px;
+                font-weight: $font-weight-300;
+                font-size: 1.4rem;
+                @include mq(md){
+                    display: none;
+                }          
+            }
+            .button-header-md{
+                display: none;
+                cursor: pointer;
+                @include mq(md){
+                    display: block;
+                    background-color: $button-red;
+                    color: $color-white;
+                    padding: 9px 8px;
+                    border: none;
+                    height: 62px;
+                    &:focus{
+                        outline: none;
+                    }                
+                }
+                img{
+                    display: block;
+                    width: 20px;
+                    margin: 0 20px;
+                }
+            }
+        }
+    }
+}
+
+
+//top
+.top{
+    padding-top: 75px;
+    background-image: url(https://isara.life/wp-content/themes/isara_v2/img/main.jpg);
+    background-size: cover;
+    background-position: center;
+    height: 500px;
+    box-sizing: content-box;
+    @include mq(md){
+        background-image: url(https://isara.life/wp-content/themes/isara_v2/img/mainsp.jpg);
+        padding-top: 62px;   
+    }
+    @include mq(sm){
+        height: 312px;     
+    }
+    .top-wrap{
+        padding-top: 75px;
+        @include mq(md){
+            padding-top: 100px;
+        }
+        @include mq(sm){
+            padding-top: 20px;
+        }          
+        .top-h1{
+            font-size: 2.8rem;
+            font-weight: $font-weight-600;
+            margin-bottom: 10px;
+            @include mq(md){
+                font-size: 2.4rem;
+                margin-bottom: 0;
+            }        
+            @include mq(sm){
+                font-size: 1.8rem;
+            }          
+        }
+        img{
+            width: 317px;
+            margin-bottom: 20px;
+            @include mq(md){
+                margin: 20px;
+            }    
+        }
+        .top-p{
+            font-size: $pc-main-font-size;
+            font-weight: $font-weight-600;
+            margin-bottom: 10px;
+            @include mq(md){
+                font-size: 1.6rem;
+            }
+            @include mq(sm){
+                font-size: 1.5rem;
+            }          
+        }
+    }
+}
+
+
+// contact-button
+.top-contact{
+    color: $color-white;
+    background-color: $color-yellow;
+    padding: 30px 0;
+    @include mq(md){
+        padding: 15px 0;       
+    }
+    .top-contact-top{
+        .top-contact-top-p{
+            font-size: $pc-main-font-size;
+            font-weight: $font-weight-600;
+            margin-bottom: 10px;
+            @include mq(md){
+                font-size: 1.6rem;
+            }
+            @include mq(sm){
+                font-size: 1.5rem;
+            }          
+        }
+        code{
+            background-color: #f9f2f4;
+            color: #c7254e;
+            font-weight: $font-weight-600;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-size: 1.8rem;
+            @include mq(md){
+                font-size: 1.44rem;
+            }
+        }
+    }
+    .top-contact-button{
+        text-align: center;
+        margin: 55px 0;
+        @include mq(md){
+            margin: 0 0 20px;
+        }
+    }
+    .top-contact-bottom-wrapper{
+        .top-contact-bottom-p{
+            font-size: 2.1rem;
+            font-weight: $font-weight-600;
+            margin-bottom: 30px;
+            @include mq(md){
+                font-size: 1.5rem;
+            }
+            @include mq(sm){
+                font-size: 1.4rem;
+                padding: 0 10px;
+            } 
+        }
+    }
+}
+
+
+
+// introduction
+.introduction{
+    background-image: url(https://isara.life/wp-content/themes/isara_v2/img/introbottom.jpg);
+    background-size: cover;
+    background-position: center;
+    @include mq(md){
+        padding: 30px 0;
+    }
+    @include mq(sm){
+        background-size: contain;
+        background-repeat: no-repeat; 
+        background-position: center bottom;         
+    }
+    .introduction-p-wrapper{
+        padding: 40px 0 70px;
+        @include mq(md){
+            padding: 25px 0;   
+        }
+        .introduction-p{
+            margin-bottom: 24px;
+            font-weight: $font-weight-300;
+            font-size: $pc-main-font-size;
+            @include mq(md){
+                margin-bottom: 30px;
+                font-size: 1.6rem;
+            }
+            @include mq(sm){
+                font-size: 1.5rem;   
+            }   
+            span{
+                // 下線
+                background: linear-gradient(transparent 70%, #ebb94d 70%);
+                font-weight: bold;
+            }
+        }
+    }
+}
+
+
+
+// about
+.about{
+    background-color: $color-beige;
+    @include mq(md){
+        padding-bottom: 40px;
+    }
+    .about-circle-wrap{
+        position: relative;
+        margin-bottom: 30px;   
+        .about-circle{
+            position: absolute;
+            top: -80px;
+            left: 47%;
+            color: $color-white;
+            background-color: $color-yellow;
+            font-size: 1.4rem;
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            line-height: 80px;
+            @include mq(md){
+                top: -50px;
+                font-size: 1.2rem;
+                width: 60px;
+                height: 60px;
+                line-height: 60px;
+            }
+            @include mq(sm){
+                left: 40%;
+            }      
+        }
+    }
+    .about-subtitle , .yellow-box-title{
+        font-size: $pc-main-font-size;
+        font-weight: $font-weight-600;
+        @include mq(md){
+            font-size: 1.6rem;
+        }
+        @include mq(sm){
+            font-size: 1.5rem;       
+        }
+    }     
+    .about-subtitle{
+        margin: 40px 0 10px;
+        @include mq(md){
+            margin: 15px 0 10px;
+        }
+    }
+    .about-yellow-box{
+        padding: 30px;
+        margin: 30px 20px;
+        width: 81%;
+        display: inline-block;
+        border-radius: 5px;
+        @include mq(md){
+            padding: 10px;
+            width: 95%;
+        }    
+        .yellow-box-items{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            @include mq(sm){
+                flex-wrap: wrap;   
+            }
+            .yellow-box-item{
+                padding: 10px;
+                @include mq(md){
+                    padding: 5px;
+                }   
+                img{
+                    @include mq(md){
+                        height: 30px;
+                    }                
+                }
+                .about-yellow-box-p{
+                    font-size: 1.2rem;
+                    margin: 10px 0;
+                    @include mq(md){
+                        font-size: 1.0rem;
+                    }
+                    @include mq(sm){
+                        margin-top: 5px;
+                    }                        
+                }
+            }
+        }
+    }
+} 
+
+
+
+// step
+.step{
+    background:url(https://isara.life/wp-content/themes/isara_v2/img/aboutsecondbg.jpg);
+    background-size: cover;
+    background-position: center;
+    color: $color-white;
+    @include mq(md){
+        background-image: url(https://isara.life/wp-content/themes/isara_v2/img/aboutsecondbgsp.jpg);
+        padding: 30px 0;   
+    }
+    @include mq(sm){
+        padding: 30px;    
+    }
+    .step-title{
+        margin: 20px 0;
+        @include mq(sm){
+            line-height: 1.2;   
+        }
+    }
+    .step-subtitle{
+        font-size: $pc-main-font-size;
+        margin-bottom: 10px;
+        @include mq(md){
+            font-size: 1.3rem;
+        }    
+        .step-span{
+            color: $color-yellow;
+        }
+    }
+    .step-items{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        margin: 30px auto 0;
+        width: 80%;
+        @include mq(md){
+            grid-template-columns: none;
+            grid-template-rows: 1fr 1fr 1fr;
+            width: 36%;
+        }
+        @include mq(sm){
+            width: 100%;       
+        }
+        .step-item{
+            background-color: $color-white;
+            color: #000000;
+            border-radius: 5px;
+            padding: 30px 30px 20px;
+            @include mq(md){
+                padding: 15px 50px;
+                margin-bottom: 20px;
+            }
+            @include mq(sm){
+                padding-bottom: 0;
+                margin-bottom: 15px;  
+            }        
+            &:nth-of-type(2) {
+                margin: 0 15px;
+                @include mq(md){
+                    margin: 0 0 20px;
+                }            
+            }
+            .step-item-top{
+                background-color: $color-yellow;
+                color: $color-white;
+                font-size: 1.6rem;
+                border-radius: 5px;
+                font-weight: $font-weight-600;
+                @include mq(md){
+                    font-size: 1.4rem;
+                    margin-bottom: 10px;
+                }
+                @include mq(sm){
+                    font-size: 1.2rem;
+                }                
+            }
+            .step-item-middle{
+                margin: 30px 0 15px;
+                font-size: 1.4rem;
+                font-weight: $font-weight-600;
+                @include mq(md){
+                    margin: 15px 0 5px;
+                    font-size: 1.2rem;
+                }            
+            }
+            .step-item-bottom{
+                font-size: 1.6rem;
+                font-weight: $font-weight-600;
+                @include mq(md){
+                    font-size: 1.4rem;
+                }
+                @include mq(sm){
+                    font-size: 1.2rem;
+                }                
+            }
+        }
+    }
+}
+
+
+// toLearn
+.toLearn{
+    .toLearn-title{
+        margin: 20px 0 35px;
+        span{
+            font-size: 1.6rem;
+            font-weight: $font-weight-600;
+            @include mq(md){
+                font-size: 1.4rem;
+            }
+            @include mq(sm){
+                font-size: 1.2rem;   
+            }       
+        }
+    }
+    .toLearn-subtitle{
+        font-weight: $font-weight-300;
+        margin-bottom: 30px;
+        font-size: $pc-main-font-size;
+        @include mq(md){
+            font-size: 1.6rem;
+        }
+        @include mq(sm){
+            margin-bottom: 10px;
+            font-size: 1.5rem;       
+        }
+    }
+    .toLearn-items{
+        display: flex;
+        justify-content: center;
+        .toLearn-item{
+            padding:0 22.5px;
+            @include mq(md){
+                padding: 20px;
+            }
+            @include mq(sm){
+                padding: 5px;   
+            }        
+            img{
+                max-width: 100%;
+                margin: 0 auto;
+                width: 180px;
+                @include mq(md){
+                    width: 120px;
+                }
+                @include mq(sm){
+                    width: 50px;
+                }                
+            }
+        }
+    }
+    .toLearn-bottom-p{
+        font-size: 1.6rem;
+        margin:30px 0 10px;
+        font-weight: $font-weight-600;
+        @include mq(md){
+            font-size: 1.4rem;
+            margin: 0 0 10px;
+        }
+        @include mq(sm){
+            font-size: 1.2rem;       
+        }
+    }
+}
+
+
+
+// merit
+.merit{
+    background-color: $color-beige;
+    @include mq(md){
+        padding: 30px 50px;
+    }
+    @include mq(sm){
+        padding: 30px 0;           
+    }
+    .merit-title{
+        @include mq(md){
+            margin: 0;
+        }
+        @include mq(sm){
+            line-height: 1.2;
+            padding: 10px;
+        }
+        .merit-span{
+            font-size: $pc-main-font-size;
+            font-weight: $font-weight-600;
+            font-size: 1.6rem;
+            @include mq(sm){
+                display: block;
+                // margin-bottom: 10px;   
+            }
+        }
+    }
+    .merit-items{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        margin: 40px auto 0;
+        width: 80%;
+        @include mq(md){
+            grid-template-columns: none;
+            grid-template-rows: 1fr 1fr 1fr;
+            width: 95%;
+        }
+        @include mq(sm){
+            grid-template-rows: 0.5fr 0.5fr 0.5fr;
+            width: 100%;       
+        }
+        .merit-item{
+            padding: 0 15px;
+            text-align: left;
+            @include mq(md){
+                text-align: center;
+                padding: 0;   
+            }
+            @include mq(sm){
+                margin-bottom: 10px;
+            }
+            &:nth-child(2){
+                margin-bottom: 20px;
+                @include mq(sm){
+                    margin-bottom: 10px;
+                }
+            }
+            img{
+                @include mq(md){
+                    width: 90%;
+                    height: 120px;
+                    // 画像トリミングしてくれる
+                    object-fit: cover;
+                }            
+            }
+            .merit-item-title{
+                margin: 8px 0;
+                color: $color-yellow;
+                font-size: $pc-main-font-size;
+                @include mq(md){
+                    margin: 10px 0 8px;
+                    font-size: 1.6rem;
+                }
+                @include mq(sm){
+                    font-size: 1.5rem;
+                }                
+            }
+            .merit-item-p{
+                font-size: 1.6rem;
+                font-weight: $font-weight-300;
+                margin: 8px 0;
+                @include mq(md){
+                    font-size: 1.4rem;
+                    text-align: left;
+                }
+                @include mq(sm){
+                    font-size: 1.2rem;
+                    width: 80%;
+                    margin: 8px auto;
+                }                
+            }
+        }
+    }
+    .merit-yellow-box{
+        padding: 40px 20px;
+        margin: 40px 20px;
+        display: inline-block;
+        width: 81%;
+        @include mq(md){
+            margin: 0 15px 20px;
+            padding: 10px;
+            width: 95%;
+        }    
+        .merit-yellow-box-title{
+            color: $color-yellow;
+            font-size: 2.8rem;
+            font-weight: $font-weight-600;
+            margin-bottom: 10px;
+            @include mq(md){
+                font-size: 2.4rem;
+            }
+            @include mq(sm){
+                font-size: 1.8rem;   
+            }        
+        }
+        .merit-yellow-box-subtitle{
+            font-size: $pc-main-font-size;
+            font-weight: $font-weight-600;
+            margin-bottom: 10px;
+            @include mq(md){
+                font-size: 1.6rem;
+            }
+            @include mq(sm){
+                font-size: 1.5rem;
+            }
+        }
+        .merit-yellow-box-p{
+            font-size: 1.6rem;
+            font-weight: $font-weight-600;
+            margin-bottom: 10px;
+            @include mq(md){
+                letter-spacing: 0;
+                font-size: 1rem;
+            }
+        }
+    }
+    .merit-bottom-p{
+        font-size: 1.4rem;
+        margin-bottom: 10px;
+        font-weight: $font-weight-300;
+        @include mq(md){
+            font-size: 1.2rem;
+            padding: 0 10px;
+        }
+        @include mq(sm){
+            letter-spacing: 0;       
+        }
+    }
+}
+
+
+
+// member
+.member{
+    background-image: url(https://isara.life/wp-content/themes/isara_v2/img/teacherbg.jpg);
+    background-size: cover;
+    background-position: center;
+    color: $color-white;
+    @include mq(md){
+        background-image: url(https://isara.life/wp-content/themes/isara_v2/img/teacherbgsp.jpg);
+        padding: 50px;   
+    }
+    @include mq(sm){
+        padding: 20px 0;           
+    }
+    .member-subtitle{
+        font-size: 1.6rem;
+        margin:30px 0 10px;
+        font-size: 1.4rem;
+        @include mq(sm){
+            font-size: 1.2rem;           
+        }
+    }
+    .member-items{
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(35%, 1fr));
+        margin: 0 calc(50% - 405px);
+        @include mq(md){
+            grid-template-columns: none;
+            grid-template-rows: repeat(auto-fit);
+            margin: 0;
+        }
+        .member-item{
+            padding: 0 15px;
+            img{
+                border-radius: 50%;
+                position: relative;
+                bottom: -35px;
+                @include mq(md){
+                    width: 120px;
+                    bottom: -45px;
+                }
+            }
+            .member-item-content{
+                border: 3px $color-white solid;
+                padding: 40px;
+                font-size: 1.6rem;
+                @include mq(md){
+                    padding: 40px 10px 10px;
+                    font-size: 1.4rem; 
+                }
+                @include mq(sm){
+                    font-size: 1.2rem;
+                }    
+                p{
+                    margin-bottom: 10px;
+                    font-weight: $font-weight-300;
+                }
+                .member-item-p{
+                    text-align-last: left;
+                }
+            }
+        }
+    }
+}
+
+
+
+// qa
+.qa{
+    background-color: $color-yellow;
+    color: $color-white;
+    position: relative;
+    &::after{
+        content: "";
+        position: absolute;
+        border: 25px solid transparent;
+        border-top-color: $color-yellow;
+        top: 100%;
+        margin-left: -25px; 
+    }
+    .qa-title-wrap{
+        .qa-round{
+            display: inline-block;
+            width: 80px;
+            height: 80px;
+            line-height: 80px;
+            border-radius: 50%;
+            background-color: $color-white;
+            color: $color-yellow;
+            font-size: 1.4rem;
+            @include mq(md){
+                font-size: 2rem;
+            }
+            @include mq(sm){
+                width: 60px;
+                height: 60px;
+                line-height: 60px;
+                font-size: 1.2rem;   
+            }    
+        }
+        .em-title-white-wrap{
+            .qa-title{
+                padding: 15px 30px;
+                margin: 0;
+                @include mq(md){
+                    font-size: 1.8rem;
+                    padding: 10px;
+                    line-height: 2;
+                }
+                @include mq(sm){
+                    font-size: 1.4rem;
+                }            
+            }
+        }
+    }
+}
+
+
+
+
+// customer-voice
+.customer-voice{
+    .customer-voice-title{
+        margin:0 0 10px;
+    }
+    .customer-voice-subtitle{
+        font-size: 1.6rem;
+        font-weight: $font-weight-600;
+        margin-bottom: 30px;
+        @include mq(md){
+            font-size: 1.4rem;   
+        }
+        @include mq(sm){
+            font-size: 1.2rem;       
+        }
+    }
+    .asterisk{
+        font-size: 1.4rem;
+        font-weight: $font-weight-300;
+        @include mq(md){
+            font-size: 1.2rem;
+            margin: 0 10px;
+            letter-spacing: 0;   
+        }
+    }
+    .customer-voice-item{
+        padding: 20px 0;
+        display: flex;
+        justify-content: center;
+        width: 90%;
+        margin: 0 auto;
+        @include mq(md){
+         padding: 20px 0; 
+         justify-content: flex-start;
+         width: 95%; 
+        }
+        .customer-voice-item-img-wrap{
+            padding-right: 15px;
+            width: 20%;
+            @include mq(md){
+                width: 55%;
+            }
+            img{
+                max-width: 100%;
+                margin: 0 auto;
+                border: 3px solid $color-yellow;
+                @include mq(md){
+                }        
+            }
+        }
+        .customer-voice-item-p-wrap{
+            width: 40%;
+            padding-left: 15px;
+            @include mq(md){
+                width: 100%;
+                padding: 0;
+            }
+            .customer-voice-p{
+                font-size: 1.8rem;
+                font-weight: $font-weight-300;
+                color: #777777;
+                font-style: italic;
+                text-align: left;
+                margin: 15px 0 10px;
+                @include mq(md){
+                    margin: -5px 0 10px;
+                }
+                @include mq(sm){
+                    font-size: 1.4rem;
+                }            
+                span{
+                    border-bottom: 1px solid #777777;
+                    font-size: 1.5rem;
+                    @include mq(sm){
+                        font-size: 1.2rem;
+                    }        
+                }
+            }
+        }
+    }
+}
+
+
+
+// learnContent
+.learnContent{
+    background-image: url(https://isara.life/wp-content/themes/isara_v2/img/classbg.jpg);
+    background-size: cover;
+    background-position: center;
+    color: $color-white;
+    @include mq(md){
+        background-image: url(https://isara.life/wp-content/themes/isara_v2/img/classbgsp.jpg);
+        padding: 20px 0;
+    }
+    .learnContent-title{
+        margin: 20px 0 10;
+    }
+    .learnContent-subtitle{
+        margin-bottom: 10px;
+        font-size: 1.6rem;
+        @include mq(md){
+            font-size: 1.4rem;
+        }
+        @include mq(sm){
+            font-size: 1.2rem;       
+        }
+    }
+    .learnContent-items{
+        padding: 40px 0;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        @include mq(md){
+            padding: 30px 10%;
+            display: block;
+        }
+        @include mq(sm){
+            padding: 20px 10px;       
+        }
+        .learnContent-item-wrap{
+            padding: 0 15px;
+            width: 375px;
+            box-sizing: content-box;
+            @include mq(md){
+                width: 100%;
+                padding: 0;
+                &:first-child{
+                    padding-bottom: 15px;
+                }
+            }    
+            .learnContent-item{
+                border-radius: 5px;
+                border: 2px $color-blue solid;   
+                .learnContent-item-title{
+                    font-size: $pc-main-font-size;
+                    padding: 15px;
+                    background-color: $color-blue;
+                    margin: 0;
+                    font-weight: $font-weight-600;
+                    @include mq(md){
+                        font-size: 1.6rem;
+                    }
+                    @include mq(sm){
+                        font-size: 1.5rem;
+                    }        
+                }
+                .learnContent-ul{
+                    background-color: $color-white;
+                    color: #000000;
+                    margin: 0;   
+                    .learnContent-li{
+                        font-size: 1.6rem;
+                        padding: 10px;
+                        border-bottom: 1px dotted #e5e5e5;
+                        font-weight: $font-weight-600;
+                        @include mq(md){
+                            font-size: 1.4rem;
+                        }
+                        @include mq(sm){
+                            font-size: 1.2rem;
+                        }                
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+
+// flow
+.flow{
+    @include mq(md){
+        padding: 20px 40px;                   
+    }
+    @include mq(sm){
+        padding: 20px 0;           
+    }
+    .flow-title{
+        margin: 20px 0 10px;   
+    }
+    .flow-top{
+        img{
+            width: 70%;
+            margin: 40px 0;
+            @include mq(md){
+                display: none;           
+            }
+        }
+    }
+    .flow-items{
+        @include mq(md){
+            padding: 20px 15px;
+        }
+        .flow-item{
+            display: flex;
+            background-color: $color-beige;
+            padding: 10px 35px;
+            margin: 0 20px;
+            border-radius: 5px;
+            width: 81%;
+            margin: 0 auto;
+            @include mq(md){
+                padding: 0;
+                margin:0 0 5px;
+                display: block;
+                cursor: pointer;
+                width: 100%;
+            }       
+            .flow-item-big{
+                width: 200px;
+                padding: 20px;
+                position: relative;
+                @include mq(md){
+                 display: flex;
+                 align-items: center;
+                 width: 100%;    
+                 padding: 10px 15px;     
+                }
+                img{
+                    @include mq(md){
+                        width: 35px;
+                        margin-right: 15px;    
+                    }
+                }
+                .flow-item-title{
+                    font-size: 1.8rem;
+                    font-weight: $font-weight-600;
+                    margin: 10px 0 0;
+                    @include mq(md){
+                        font-size: 1.6rem;
+                        margin: 0;
+                        &:hover{
+                            text-decoration: underline;
+                        }       
+                    }
+                    @include mq(sm){
+                        font-size: 1.5rem;
+                    }
+                    i{
+                        display: none;
+                        @include mq(md){
+                            display: inline;
+                            position: absolute;
+                            right: 20px;
+                            top: 20px;
+                        }
+                    }
+                    .flow-br{
+                        @include mq(md){
+                            display: none;
+                        }
+                    }
+                }
+            }
+            .flow-small{
+                width: 80%;
+                padding-top: 10px;
+                @include mq(md){
+                    width: 100%;           
+                    padding: 15px;
+                    display: none;   
+                }   
+                p{
+                    margin: 20px 0;
+                    text-align: left;
+                    @include mq(md){
+                        margin: 0 0 10px;
+                    }
+                }
+                .flow-p-bold{
+                    font-size: 1.6rem;
+                    font-weight: $font-weight-600;
+                    @include mq(md){
+                        font-size: 1.4rem;       
+                    }
+                }
+                .flow-p-thin{
+                    font-size: 1.4rem;
+                    font-weight: $font-weight-300;
+                    @include mq(md){
+                        font-size: 1.2rem;       
+                    }
+                }
+            }
+        }
+        .flow-img{
+            @include mq(md){
+                display: none;
+            }
+        }
+    }
+}
+    
+
+
+// bangkok
+.bangkok{
+    background-image: url(https://isara.life/wp-content/themes/isara_v2/img/bangkokbg.jpg);
+    background-size: cover;
+    background-position: center;
+    padding: 80px 100px;
+    color: $color-white;
+    @include mq(md){
+        background-image: url(https://isara.life/wp-content/themes/isara_v2/img/bangkokbgsp.jpg);
+        padding: 40px;
+    }
+    @include mq(sm){
+        padding: 20px 15px;           
+    }
+    .bangkok-wrap{
+        margin: 0 20px;   
+        .bangkok-title{
+            margin: 20px 0;
+            text-align: left;
+            font-size: 2.4rem;
+            @include mq(md){
+                text-align: center;       
+            }
+        }
+        .bangkok-p-wrap{
+            @include mq(sm){
+                font-size: 1.6rem;   
+            }   
+            p{
+                text-align: left;
+                margin-bottom: 10px;
+            }
+            .bangkok-subtitle{
+                font-size: 1.4rem;
+                font-weight: $font-weight-300;
+                @include mq(md){
+                    letter-spacing: 0;
+                    font-size: 1.2rem;
+                    margin-bottom: 20px;
+                }
+            }
+            .bangkok-list{
+                font-size: 1.6rem;
+                font-weight: $font-weight-600;
+                @include mq(md){
+                    font-size: 1.4rem;   
+                }
+                @include mq(sm){
+                    font-size: 1.2rem;
+                }    
+            }
+            .bangkok-bottom-p{
+                margin-top: 20px;
+                font-size: $pc-main-font-size;
+                font-weight: $font-weight-600;
+                @include mq(md){
+                    font-size: 1.6rem;   
+                }
+                @include mq(sm){
+                    font-size: 1.5rem;
+                }    
+            }
+        }
+    }
+}
+
+
+
+// benefit
+.benefit{
+    background-color: $color-yellow2;
+    padding: 40px;
+    @include mq(sm){
+        padding: 20px 0;
+    }
+    .benefit-title{
+        margin: 20px 0 40px;
+        @include mq(md){
+            margin: 20px 0 20px;           
+        }
+        @include mq(sm){
+            margin: 0 0 20px;
+        }    
+    }
+    .benefit-subtitle{
+        font-size: 1.6rem;
+        margin-bottom: 30px;
+        @include mq(md){
+            font-size: 1.4rem; 
+            margin-bottom: 60px;          
+        }
+        @include mq(sm){
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }    
+
+        .benefit-span{
+            color: $color-white;
+        }
+    }
+    .benefit-item-title{
+        font-size: 2.8rem;
+        font-weight: $font-weight-600;
+        position: relative;
+        background-color: $color-yellow2;
+        width: 60%;
+        margin: 0 auto;
+        bottom: -30px;
+        @include mq(md){
+            font-size: 2.4rem;           
+        }
+        @include mq(sm){
+            font-size: 1.8rem;
+            width: 50%;
+        }    
+    }
+    .benefit-items{
+        padding:40px;
+        margin: 0 auto;
+        border: 2px solid $color-white;
+        width: 86%;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        @include mq(md){
+            padding: 30px;
+            display: block;
+            width: 96%;
+        }
+        @include mq(sm){
+            width: 95%;
+            margin-top: 20px;
+        }    
+        .benefit-item-wrap{
+            padding: 0 15px;
+            @include mq(sm){
+                padding: 0;
+            }        
+            .benefit-item{
+                background-color: $color-white;
+                width: 250px;
+                height: 250px;
+                border-radius: 50%;
+                padding: 15px;
+                // table-cellは、対象要素をHTMLタグのtdと同じにするもの。tdではその中身に対してtext-alignとvertical-alignが有効になるので、縦・横の両方向に中央寄せできる。
+                display: table-cell;
+                vertical-align: middle;
+                @include mq(md){
+                    background-color: $color-yellow2;
+                    width: 100%;
+                    height: auto;
+                    border-radius: 0;
+                    padding: 0;
+                    display: flex;
+                }
+                @include mq(sm){
+                    margin-bottom: 20px;
+                }            
+                .benefit-item-yellow-wrap{
+                    @include mq(md){
+                        width: 30%;
+                    }
+                    .benefit-item-yellow{
+                        font-size: 2.4rem;
+                        color: $color-yellow;
+                        font-weight: $font-weight-300;
+                        margin-bottom: 10px;
+                        @include mq(md){
+                            font-size: 2.0rem;
+                            border-radius: 50%;
+                            width: 80px;
+                            height: 80px;
+                            line-height: 80px;
+                            background-color: $color-white;
+                            display: inline-block;
+                            text-align: center;
+                        }
+                        @include mq(sm){
+                            width: 60px;
+                            height: 60px;
+                            line-height: 60px;
+                            font-size: 1.2rem;
+                        }                    
+                    } 
+                }
+                .benefit-item-p-pc{
+                    font-size: 1.4rem;
+                    font-weight: $font-weight-600;
+                    margin-bottom: 10px;
+                    @include mq(md){
+                        display: none;
+                    }
+                }
+                .benefit-item-p-md{
+                    display: none;
+                    @include mq(md){
+                        display: inline;
+                        font-size: 1.4rem;
+                        font-weight: $font-weight-600;
+                        margin-bottom: 10px;
+                        padding-top: 25px;
+                        width: 80%;
+                        color: $color-white; 
+                        text-align: left;                     
+                    }
+                    @include mq(sm){
+                        font-size: 1.2rem;
+                        padding: 12px 0;
+                    }                
+                }
+            }
+        }
+    }
+}
+
+
+
+// value
+.value{
+    background-image: url(https://isara.life/wp-content/themes/isara_v2/img/specialdetail.jpg);
+    background-size: cover;
+    background-position: center;
+    color: $color-white;
+    @include mq(md){
+        background-image: url(https://isara.life/wp-content/themes/isara_v2/img/specialdetailsp.jpg);
+    }
+    @include mq(sm){
+        padding: 20px 10px;
+    }
+    .value-title{
+        margin: 20px 0;
+    }
+    .value-subtitle, .value-p{
+        margin-bottom: 40px;
+        font-size: $pc-main-font-size;
+        @include mq(md){
+            font-size: 1.6rem;
+        }
+        @include mq(sm){
+            font-size: 1.2rem;
+        }
+    }
+}
+
+
+
+// message
+.message{
+    .message-title{
+        margin: 20px 0 35px;
+    }
+    .message-subtitle{
+        font-weight: 700;
+        font-size: $pc-main-font-size;
+        @include mq(md){
+            font-size: 1.6rem;
+        }
+    }
+    .message-wrap{
+        display: flex;
+        justify-content: center;
+        width: 74%;
+        margin:0 auto;
+        margin-top: 40px;
+        @include mq(md){
+            display: block;
+            width: 95%; 
+            margin-top: 20px;
+        }
+        .message-img{   
+            img{
+                padding: 0 15px;
+                width: 192.5px;
+                box-sizing: content-box;
+                @include mq(md){
+                    width: 95%;
+                    padding: 20px 15px;
+                }
+                @include mq(sm){
+                    padding: 5px;
+                }        
+            }
+        }
+        .message-p-wrap{
+            text-align: left;
+            padding: 0 15px;
+            @include mq(md){
+                padding: 20px;
+            }
+            @include mq(sm){
+                padding: 5px;
+            }    
+            .message-p{
+                margin-bottom: 10px;
+                font-size: 1.4rem;
+            }
+            .message-p-top{
+                margin-bottom: 30px;
+            }
+            .message-p-middle{
+                margin-bottom: 30px;
+            }
+            .message-p-bottom{
+                margin-bottom: 30px;
+            }
+        }
+    }
+}
+
+
+
+// contact
+.contact{
+    background-color: $color-yellow;
+    @include mq(md){
+        padding: 40px 0;       
+    }
+    @include mq(sm){
+        padding: 20px 15px 70px;
+    }
+    .contact-title{
+        margin: 20px 0;
+    }
+    .contact-subtitle{
+        font-size: 1.6rem;
+        margin-bottom: 30px;
+        font-weight: $font-weight-600;
+        @include mq(md){
+            font-size: 1.4rem;   
+        }
+        @include mq(sm){
+            font-size: 1.2rem;
+        }
+    }
+    form{
+        display: inline-block;
+        width: 60%;
+        text-align: center;
+        @include mq(md){
+            width: 70%;   
+        }
+        @include mq(sm){
+            width: 100%;   
+        }
+        input{
+            width: 100%;
+            border: none;
+            padding: 10px;
+            margin-bottom: 25px;
+            border-radius: 5px;
+            height: 55px;
+        }
+        textarea{
+            width: 100%;
+            border: none;
+            padding: 10px;
+            margin:20px 0;
+            border-radius: 5px;
+            height: 97px;
+        }
+    }
+}
+
+
+
+//toggleQuestion
+.toggleQuestion{
+    padding: 40px;
+    @include mq(sm){
+        padding: 20px 15px;       
+    }
+    .toggleQuestion-title{
+        margin: 20px 0 40px;
+        @include mq(sm){
+            margin: 20px 0;       
+        }
+    }
+    .toggleQuestion-items{
+        text-align: left;
+        width: 76.666%;
+        margin: 0 auto;
+        margin-bottom: 20px;
+        @include mq(md){
+            width: 100%;   
+        }
+        .toggleQuestion-item{
+            position: relative;
+            cursor: pointer;
+            .toggleQuestion-item-title-wrap{
+                padding: 16px 20px;
+                border: 1px solid #e5e5e5;
+                border-radius: 3px;
+                @include mq(md){
+                    padding: 10px;
+                    font-size: 1.4rem;
+                }        
+                .fa-question-circle{
+                    &::before{
+                        color: $color-blue;
+                    }
+                }
+                p{
+                    display: inline;
+                    text-decoration: none;
+                    color: #000000;
+                    font-weight: $font-weight-600;
+                    font-size: $pc-main-font-size;
+                    @include mq(md){
+                        font-size: 1.6rem;
+                    }
+                    @include mq(sm){
+                        font-size: 1.5rem;
+                    }                        
+                    &:hover{
+                        border-bottom: 1px solid #000000;
+                    }
+                    i{
+                        position: absolute;
+                        right: 20px;
+                        top: 20px;
+                        color: #e5e5e5;
+                    }
+                }
+            }
+            .toggleQuestion-p-wrap{
+                margin-bottom: 5px;   
+                .toggleQuestion-p{
+                    display: none;
+                    padding: 20px;
+                    margin-bottom: 10px;
+                    font-size: 1.6rem;
+                    color: $color-text;
+                    font-weight: $font-weight-600;
+                    @include mq(md){
+                        font-size: 1.4rem;
+                    }
+                    @include mq(sm){
+                        font-size: 1.2rem;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+
+//footer
+.footer{
+    background-color: #ececec;
+    padding: 40px 15px 20px;
+    @include mq(md){
+        padding: 20px 15px 0 0;
+    }
+    .copyright{
+        color: $color-text;
+        font-size: 10px;
+        padding-bottom: 5px;
+        span{
+            color: #337ab7;
+        }
+    }
+    .sns-button-items{
+        margin-bottom: 30px;
+    }
+}
+
+
+// トップページへ戻るボタン
+.top-page{
+    position: fixed;
+    color: $color-text;
+    background-color:#ececec;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+    padding: 20px 25px;
+    right: 50px;
+    bottom: 90px;
+    @include mq(sm){
+        padding: 10px 15px;
+        right: 10px;
+        bottom: 20px;
+    }
+}
